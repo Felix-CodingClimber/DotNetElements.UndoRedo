@@ -1,5 +1,7 @@
-#### name: issue-review
-description: Read-only audit of uncommitted .NET changes against a GitHub issue and docs/DESIGN.md before committing.
+---
+name: issue-review
+description: 'Manual only. Trigger only via /issue-review or when the user says "Use issue-review". Do not auto-trigger.'
+---
 
 #### Issue Review (Read-Only)
 

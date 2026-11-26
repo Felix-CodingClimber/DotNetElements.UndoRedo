@@ -1,5 +1,7 @@
-#### name: milestone-build
-description: Implement a single .NET milestone/phase from docs/PLAN.md, run build and tests, and leave changes uncommitted for review.
+---
+name: milestone-build
+description: 'Manual only. Trigger only via /milestone-build or when the user says "Use milestone-build". Do not auto-trigger.'
+---
 
 #### Milestone Build
 

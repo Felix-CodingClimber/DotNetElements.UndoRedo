@@ -1,5 +1,7 @@
-#### name: milestone-review
-description: Read-only audit of uncommitted .NET changes against docs/DESIGN.md and docs/PLAN.md before committing.
+---
+name: milestone-review
+description: 'Manual only. Trigger only via /milestone-review or when the user says "Use milestone-review". Do not auto-trigger.'
+---
 
 #### Milestone Review (Read-Only)
 

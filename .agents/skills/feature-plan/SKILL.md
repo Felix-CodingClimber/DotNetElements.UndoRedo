@@ -1,5 +1,7 @@
-#### name: feature-plan
-description: Interactive, read-only planning session for a new .NET feature that produces a spec (and optional implementation details) and opens a GitHub issue only after explicit approval.
+---
+name: feature-plan
+description: 'Manual only. Trigger only via /feature-plan or when the user says "Use feature-plan". Do not auto-trigger.'
+---
 
 #### Feature Plan (Interactive Planning -> Approved GitHub Issue)
 

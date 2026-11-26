@@ -1,5 +1,7 @@
-#### name: issue-spec
-description: Read-only analysis of a GitHub issue to propose acceptance criteria and a brief .NET implementation plan before building.
+---
+name: issue-spec
+description: 'Manual only. Trigger only via /issue-spec or when the user says "Use issue-spec". Do not auto-trigger.'
+---
 
 #### Guardrails
 * Do not edit any files or alter git state.
@@ -8,4 +10,4 @@ description: Read-only analysis of a GitHub issue to propose acceptance criteria
 #### Steps
 1. Run `gh issue view <number> --comments` and read docs/DESIGN.md.
 2. Locate the relevant projects, classes, and tests in the codebase.
-3. Output: **Acceptance Criteria** (bulleted checklist), **Files Likely Affected**, **Edge Cases / Risks**, and **Open Questions** (if any).
+3. Output: **Acceptance Criteria** (bulleted checklist), **Brief Implementation Plan**, **Files Likely Affected**, **Edge Cases / Risks**, and **Open Questions** (if any).

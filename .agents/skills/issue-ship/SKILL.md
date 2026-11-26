@@ -1,5 +1,7 @@
-#### name: issue-ship
-description: Commit verified local changes, push the issue branch, and open a GitHub pull request linked to the issue.
+---
+name: issue-ship
+description: 'Manual only. Trigger only via /issue-ship or when the user says "Use issue-ship". Do not auto-trigger.'
+---
 
 #### Guardrails
 * Never commit or push directly to `main`.

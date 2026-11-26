@@ -1,5 +1,7 @@
-#### name: codebase-audit
-description: Read-only .NET codebase audit (general, topic-focused, or user-provided list) that reports findings with proposed fixes and creates GitHub issues only after explicit approval.
+---
+name: codebase-audit
+description: 'Manual only. Trigger only via /codebase-audit or when the user says "Use codebase-audit". Do not auto-trigger.'
+---
 
 #### Codebase Audit (Read-Only Investigation -> Approved Issue Creation)
 

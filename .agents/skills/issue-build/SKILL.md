@@ -1,5 +1,7 @@
-#### name: issue-build
-description: Implement a single GitHub issue in .NET, run build and tests, and leave changes uncommitted on an issue branch for review.
+---
+name: issue-build
+description: 'Manual only. Trigger only via /issue-build or when the user says "Use issue-build". Do not auto-trigger.'
+---
 
 #### Issue Build
 
