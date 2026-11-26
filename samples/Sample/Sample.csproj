@@ -3,14 +3,10 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<LangVersion>preview</LangVersion>
-		<RootNamespace>DotNetElements.UndoRedo.Sample</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Generators\Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+		<ProjectReference Include="..\..\src\Generators\Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\..\src\UndoRedo\UndoRedo.csproj" />
 	</ItemGroup>
 

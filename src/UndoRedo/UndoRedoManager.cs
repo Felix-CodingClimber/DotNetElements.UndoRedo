@@ -124,6 +124,13 @@ public sealed partial class UndoRedoManager : ObservableObject
 	/// <summary>
 	/// Records a strongly-typed property change.
 	/// </summary>
+	/// <typeparam name="T">The type of the changed property.</typeparam>
+	/// <param name="oldValue">The property value before the change.</param>
+	/// <param name="newValue">The property value after the change.</param>
+	/// <param name="setter">The delegate used to restore <paramref name="oldValue"/> or re-apply <paramref name="newValue"/>.</param>
+	/// <param name="description">The description of the property change.</param>
+	/// <param name="mergeKey">An optional key used to decide whether consecutive changes may be coalesced.</param>
+	/// <param name="mergeTimeoutMs">The time window in milliseconds within which consecutive changes may be coalesced.</param>
 	public void RecordPropertyChange<T>(
 		T oldValue,
 		T newValue,
