@@ -7,6 +7,7 @@ namespace DotNetElements.UndoRedo;
 /// An <see cref="ObservableCollection{T}"/> that automatically records mutations into an
 /// <see cref="UndoRedoManager"/> and propagates <see cref="IUndoableNode.UndoRedo"/> to child items.
 /// </summary>
+/// <typeparam name="T">The type of elements in the collection.</typeparam>
 public class UndoableCollection<T> : ObservableCollection<T>, IUndoableNode
 {
 	/// <summary>
@@ -33,16 +34,27 @@ public class UndoableCollection<T> : ObservableCollection<T>, IUndoableNode
 
 	private UndoRedoManager? undoRedo;
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="UndoableCollection{T}"/> class.
+	/// </summary>
+	/// <param name="undoRedo">The optional <see cref="UndoRedoManager"/> initially attached to the collection.</param>
 	public UndoableCollection(UndoRedoManager? undoRedo = null)
 	{
 		this.undoRedo = undoRedo;
 	}
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="UndoableCollection{T}"/> class
+	/// with the specified initial items.
+	/// </summary>
+	/// <param name="items">The items to copy into the collection.</param>
+	/// <param name="undoRedo">The optional <see cref="UndoRedoManager"/> initially attached to the collection.</param>
 	public UndoableCollection(IEnumerable<T> items, UndoRedoManager? undoRedo = null) : base(items)
 	{
 		UndoRedo = undoRedo;
 	}
 
+	/// <inheritdoc/>
 	protected override void InsertItem(int index, T item)
 	{
 		base.InsertItem(index, item);
@@ -55,6 +67,7 @@ public class UndoableCollection<T> : ObservableCollection<T>, IUndoableNode
 			redo: () => Insert(index, item)));
 	}
 
+	/// <inheritdoc/>
 	protected override void RemoveItem(int index)
 	{
 		T removed = Items[index];
@@ -69,6 +82,7 @@ public class UndoableCollection<T> : ObservableCollection<T>, IUndoableNode
 			redo: () => RemoveAt(index)));
 	}
 
+	/// <inheritdoc/>
 	protected override void SetItem(int index, T item)
 	{
 		T oldItem = Items[index];
@@ -87,6 +101,7 @@ public class UndoableCollection<T> : ObservableCollection<T>, IUndoableNode
 			redo: () => this[index] = item));
 	}
 
+	/// <inheritdoc/>
 	protected override void MoveItem(int oldIndex, int newIndex)
 	{
 		base.MoveItem(oldIndex, newIndex);
@@ -100,6 +115,7 @@ public class UndoableCollection<T> : ObservableCollection<T>, IUndoableNode
 			redo: () => Move(oldIndex, newIndex)));
 	}
 
+	/// <inheritdoc/>
 	protected override void ClearItems()
 	{
 		if (Items.Count == 0)

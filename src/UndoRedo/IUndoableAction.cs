@@ -21,8 +21,8 @@ public interface IUndoableAction
 	void Redo();
 
 	/// <summary>
-	/// Attempts to coalesce <paramref name="next"/> into this action.
-	/// Returns <see langword="true"/> if merged (in which case <paramref name="next"/> is discarded).
+	/// Attempts to coalesce <paramref name="nextAction"/> into this action.
+	/// Returns <see langword="true"/> if merged (in which case <paramref name="nextAction"/> is discarded).
 	/// </summary>
-	bool TryMerge(IUndoableAction next) => false;
+	bool TryMerge(IUndoableAction nextAction) => false;
 }

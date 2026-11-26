@@ -29,14 +29,22 @@ A lightweight, AOT-friendly, reflection-free Undo/Redo framework for **.NET 10**
 
 ---
 
-## Installation (Project References)
+## Installation
 
-Reference both the runtime library and the source generator (as an analyzer) in your application project:
+Install the package from NuGet. It bundles the Roslyn source generator under `analyzers/dotnet/cs/`, so no separate analyzer reference is required:
+
+```shell
+dotnet add package DotNetElements.UndoRedo
+```
+
+### From Source
+
+When working inside this repository, reference the runtime library and the source generator projects directly:
 
 ```xml
 <ItemGroup>
-  <ProjectReference Include="..\DotNetElements.UndoRedo\DotNetElements.UndoRedo.csproj" />
-  <ProjectReference Include="..\DotNetElements.UndoRedo.Generators\DotNetElements.UndoRedo.Generators.csproj"
+  <ProjectReference Include="..\..\src\UndoRedo\UndoRedo.csproj" />
+  <ProjectReference Include="..\..\src\Generators\Generators.csproj"
                     OutputItemType="Analyzer"
                     ReferenceOutputAssembly="false" />
 </ItemGroup>
@@ -256,5 +264,5 @@ dotnet build DotNetElements.UndoRedo.slnx
 dotnet test DotNetElements.UndoRedo.slnx
 
 # Run the console sample
-dotnet run --project DotNetElements.UndoRedo.Sample
+dotnet run --project samples/Sample/Sample.csproj
 ```
