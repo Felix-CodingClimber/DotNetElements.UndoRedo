@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src/UndoRedo/UndoRedo.csproj" />
+  <Project Path="src/Generators/Generators.csproj" />
+  <Project Path="samples/Sample/Sample.csproj" />
+  <Project Path="tests/Tests/Tests.csproj" />
+</Solution>
