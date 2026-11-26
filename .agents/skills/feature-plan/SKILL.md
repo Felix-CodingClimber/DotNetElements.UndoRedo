@@ -1,0 +1,37 @@
+#### name: feature-plan
+description: Interactive, read-only planning session for a new .NET feature that produces a spec (and optional implementation details) and opens a GitHub issue only after explicit approval.
+
+#### Feature Plan (Interactive Planning -> Approved GitHub Issue)
+
+Collaborate with the user to design a new feature against the current codebase and docs/DESIGN.md, then create a clean, `issue-build`-ready GitHub issue once approved.
+
+#### Guardrails
+
+* **Read-Only Repository:** Never modify, create, or delete repository files, and never alter git state.
+* **Strict Approval Gate:** Do **not** run `gh issue create` until the user explicitly approves the final issue draft.
+* **Check Reality First:** Inspect docs/DESIGN.md, existing code patterns, and open GitHub issues (`gh issue list --state open`) before proposing a design.
+* **Right-Sized Scope:** If the feature is too large for a single clean PR, proactively suggest splitting it into 2–3 ordered issues.
+* **Allowed Commands:** Read-only file inspection, `gh issue list`, `gh issue view`, and `gh issue create` (Phase 3 only, after approval).
+
+#### Phase 1: Explore & Clarify
+
+1. Read docs/DESIGN.md, inspect relevant projects, interfaces, and conventions, and run `gh issue list --state open --limit 50` to check for overlapping work.
+2. Identify ambiguities, edge cases, architectural trade-offs, or conflicts with docs/DESIGN.md.
+3. Ask concise, high-signal clarifying questions (grouped into a short numbered list, with recommended defaults where helpful).
+   * If the user's initial description is already unambiguous, skip straight to Phase 2.
+
+#### Phase 2: Draft Spec & Iterate
+
+1. Present the complete proposed GitHub issue draft for review:
+   * **Title:** Concise, action-oriented feature title.
+   * **Goal / Problem:** Brief explanation of what this enables and why.
+   * **Scope & Non-Goals:** Explicit boundaries to prevent scope creep during implementation.
+   * **Specification & Acceptance Criteria:** Concrete behavior, edge cases, and a testable checklist.
+   * **Design & Dependency Notes:** Whether docs/DESIGN.md must be updated, and any NuGet package explicitly approved for this feature (omit if none).
+   * **Implementation Details (Optional):** Suggested approach, key interfaces/files likely affected, and test strategy. Keep high-level unless specific constraints matter.
+2. **Stop** and ask for feedback, edits, or approval to create the issue (or split it into multiple issues). Repeat until explicitly approved.
+
+#### Phase 3: Create Issue (After User Approval)
+
+1. Run `gh issue create` with the approved title, body, and any requested labels.
+2. Output the created issue number(s), title(s), and URL(s).
