@@ -1,0 +1,17 @@
+<Project>
+    <PropertyGroup>
+        <LangVersion>14.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AnalysisLevel>latest-recommended</AnalysisLevel>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+
+        <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+
+        <AssemblyName Condition="'$(AssemblyName)' == ''">DotNetElements.UndoRedo.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace Condition="'$(RootNamespace)' == ''">DotNetElements.UndoRedo.$(MSBuildProjectName)</RootNamespace>
+        <PackageId Condition="'$(PackageId)' == ''">DotNetElements.UndoRedo.$(MSBuildProjectName)</PackageId>
+    </PropertyGroup>
+</Project>

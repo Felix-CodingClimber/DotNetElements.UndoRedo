@@ -6,7 +6,7 @@ namespace DotNetElements.UndoRedo.Tests;
 public class UndoRedoTests
 {
 	[Fact]
-	public void GeneratedProperty_TracksUndoAndRedo_WithCommands()
+	public void GeneratedPropertyTracksUndoAndRedoWithCommands()
 	{
 		UndoRedoManager undo = new();
 		TestDocument doc = new() { Title = "Initial", Zoom = 1.0 };
@@ -39,7 +39,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void UndoableIgnore_DoesNotRecordHistory()
+	public void UndoableIgnoreDoesNotRecordHistory()
 	{
 		UndoRedoManager undo = new();
 		TestDocument doc = new();
@@ -53,7 +53,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void PropertyLevelUndoable_TracksOnlyOptedInProperties()
+	public void PropertyLevelUndoableTracksOnlyOptedInProperties()
 	{
 		UndoRedoManager undo = new();
 		OptInViewModel vm = new() { Tracked = "A", Untracked = "X" };
@@ -71,7 +71,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void Suspend_SuppressesRecording_SupportsNesting()
+	public void SuspendSuppressesRecordingSupportsNesting()
 	{
 		UndoRedoManager undo = new();
 		TestDocument doc = new() { Title = "A" };
@@ -97,7 +97,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void Transactions_GroupChangesIntoSingleStep_SupportsNestingAndEmpty()
+	public void TransactionsGroupChangesIntoSingleStepSupportsNestingAndEmpty()
 	{
 		UndoRedoManager undo = new();
 		TestDocument doc = new() { Title = "Start", Zoom = 1.0 };
@@ -133,7 +133,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void Coalescing_MergesRapidChangesWithinWindow_SplitsAfterWindow()
+	public void CoalescingMergesRapidChangesWithinWindowSplitsAfterWindow()
 	{
 		ManualTimeProvider clock = new(new DateTimeOffset(2026, 1, 1, 12, 0, 0, TimeSpan.Zero));
 		UndoRedoManager undo = new(timeProvider: clock);
@@ -162,7 +162,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void MaxCapacity_EvictsOldestEntries()
+	public void MaxCapacityEvictsOldestEntries()
 	{
 		UndoRedoManager undo = new(maxCapacity: 2);
 		TestDocument doc = new() { Title = "0" };
@@ -184,7 +184,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void DirtyTracking_TracksSavedBookmarkAcrossUndoRedoAndCoalescing()
+	public void DirtyTrackingTracksSavedBookmarkAcrossUndoRedoAndCoalescing()
 	{
 		ManualTimeProvider clock = new(new DateTimeOffset(2026, 1, 1, 12, 0, 0, TimeSpan.Zero));
 		UndoRedoManager undo = new(timeProvider: clock);
@@ -230,7 +230,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void UndoableCollection_TracksAddInsertRemoveReplaceMoveClear()
+	public void UndoableCollectionTracksAddInsertRemoveReplaceMoveClear()
 	{
 		UndoRedoManager undo = new();
 		UndoableCollection<string> list = new(undo);
@@ -285,7 +285,7 @@ public class UndoRedoTests
 	}
 
 	[Fact]
-	public void ObjectGraph_CascadesAttachDetachAndReattachAcrossCollectionsAndProperties()
+	public void ObjectGraphCascadesAttachDetachAndReattachAcrossCollectionsAndProperties()
 	{
 		UndoRedoManager undo = new();
 		TestDocument doc = new() { Title = "Doc" };

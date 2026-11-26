@@ -1,9 +1,17 @@
 <Solution>
-  <Folder Name="/Solution Items/">
-    <File Path="README.md" />
-  </Folder>
-  <Project Path="src/UndoRedo/UndoRedo.csproj" />
-  <Project Path="src/Generators/Generators.csproj" />
-  <Project Path="samples/Sample/Sample.csproj" />
-  <Project Path="tests/Tests/Tests.csproj" />
+    <Folder Name="/Solution Items/">
+        <File Path="README.md" />
+        <File Path="Directory.Build.props" />
+        <File Path="Directory.Packages.props" />
+    </Folder>
+    <Folder Name="/src/">
+        <Project Path="src/UndoRedo/UndoRedo.csproj" />
+        <Project Path="src/Generators/Generators.csproj" />
+    </Folder>
+    <Folder Name="/samples/">
+        <Project Path="samples/Sample/Sample.csproj" />
+    </Folder>
+    <Folder Name="/tests/">
+        <Project Path="tests/Tests/Tests.csproj" />
+    </Folder>
 </Solution>

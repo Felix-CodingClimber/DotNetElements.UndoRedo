@@ -2,14 +2,65 @@
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<LangVersion>preview</LangVersion>
+		<AssemblyName>DotNetElements.UndoRedo</AssemblyName>
 		<RootNamespace>DotNetElements.UndoRedo</RootNamespace>
+		<PackageId>DotNetElements.UndoRedo</PackageId>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Title>DotNetElements - UndoRedo</Title>
+		<Description>Lightweight, AOT-friendly, reflection-free undo/redo framework for .NET, designed for CommunityToolkit.Mvvm partial properties and Roslyn source generation.</Description>
+		<Authors>Felix-CodingClimber</Authors>
+		<Copyright>Felix-CodingClimber</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Felix-CodingClimber/DotNetElements.UndoRedo</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Felix-CodingClimber/DotNetElements.UndoRedo</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>undo;redo;undo-redo;mvvm;avalonia;source-generator;roslyn;aot</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>logo-small-nuget.png</PackageIcon>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Generators\Generators.csproj"
+		                  OutputItemType="Analyzer"
+		                  ReferenceOutputAssembly="false"
+		                  PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\..\brand\logo-small-nuget.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<!-- Pack the source generator into analyzers/dotnet/cs so consumers get it automatically. -->
+	<Target Name="AddGeneratorToPackage" BeforeTargets="_GetPackageFiles">
+		<MSBuild Projects="..\Generators\Generators.csproj"
+		         Targets="GetTargetPath"
+		         Properties="Configuration=$(Configuration)">
+			<Output TaskParameter="TargetOutputs" ItemName="GeneratorTargetPath" />
+		</MSBuild>
+
+		<ItemGroup>
+			<None Include="@(GeneratorTargetPath)"
+			      Pack="true"
+			      PackagePath="analyzers/dotnet/cs/"
+			      Visible="false" />
+		</ItemGroup>
+	</Target>
 
 </Project>
