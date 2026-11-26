@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    # Install the .NET SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore
+      run: dotnet restore DotNetElements.UndoRedo.slnx
+
+    - name: Build
+      run: dotnet build DotNetElements.UndoRedo.slnx -c Release --no-restore
+
+    - name: Test
+      run: dotnet test DotNetElements.UndoRedo.slnx -c Release --no-build
+
+    # Verify the packages can be produced without publishing them
+    - name: Pack
+      run: dotnet pack DotNetElements.UndoRedo.slnx -c Release --no-build --output ./nuget
