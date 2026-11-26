@@ -11,13 +11,13 @@ Collaborate with the user to design a new feature against the current codebase a
 
 * **Read-Only Repository:** Never modify, create, or delete repository files, and never alter git state.
 * **Strict Approval Gate:** Do **not** run `gh issue create` until the user explicitly approves the final issue draft.
-* **Check Reality First:** Inspect docs/DESIGN.md, existing code patterns, and open GitHub issues (`gh issue list --state open`) before proposing a design.
+* **Check Reality First:** Inspect docs/DESIGN.md, existing code patterns, and open GitHub issues (prefer the host's `list_issues` tool if available; otherwise `gh issue list --state open --limit 50`) before proposing a design.
 * **Right-Sized Scope:** If the feature is too large for a single clean PR, proactively suggest splitting it into 2–3 ordered issues.
-* **Allowed Commands:** Read-only file inspection, `gh issue list`, `gh issue view`, and `gh issue create` (Phase 3 only, after approval).
+* **Allowed Commands:** Read-only file inspection, host issue tools (`list_issues`, `read_issue`) or `gh issue list` / `gh issue view <number> --json number,title,body,comments,labels,state` (never bare `--comments`), and `create_issue` / `gh issue create` (Phase 3 only, after approval).
 
 #### Phase 1: Explore & Clarify
 
-1. Read docs/DESIGN.md, inspect relevant projects, interfaces, and conventions, and run `gh issue list --state open --limit 50` to check for overlapping work.
+1. Read docs/DESIGN.md, inspect relevant projects, interfaces, and conventions, and check open issues (via `list_issues` if available, else `gh issue list --state open --limit 50`) to check for overlapping work.
 2. Identify ambiguities, edge cases, architectural trade-offs, or conflicts with docs/DESIGN.md.
 3. Ask concise, high-signal clarifying questions (grouped into a short numbered list, with recommended defaults where helpful).
    * If the user's initial description is already unambiguous, skip straight to Phase 2.

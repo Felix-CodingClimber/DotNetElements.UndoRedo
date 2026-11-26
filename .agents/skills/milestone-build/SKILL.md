@@ -21,8 +21,10 @@ Implement only the requested milestone/phase from docs/PLAN.md while adhering to
 
 1. Read docs/DESIGN.md and the target milestone in docs/PLAN.md.
 2. Inspect existing code patterns, namespaces, conventions, and current NuGet packages (`.csproj`) before editing; flag any missing dependency needs now rather than mid-implementation.
-3. Implement the milestone changes and add or update unit/integration tests covering the new behavior and edge cases.
-4. Run dotnet build and dotnet test until both pass with zero errors.
+3. Implement in small vertical slices (e.g., contracts/models → core logic → UI/wiring → tests), compiling and verifying each slice as you go rather than designing every file upfront in a single turn. Add or update unit/integration tests covering the new behavior and edge cases.
+4. Verify builds and tests efficiently:
+   * **During iteration:** Build with `dotnet build --no-restore` (after an initial restore or unless packages changed) and run targeted tests with `dotnet test --no-build --filter "<Filter>"`.
+   * **Final gate:** Before handoff, run a full solution `dotnet build --no-restore` followed by `dotnet test --no-build` until both pass with zero errors.
 5. Check git status and git diff --stat to confirm only milestone-relevant files were modified.
 
 #### Plan Tracking (`docs/PLAN.md`)

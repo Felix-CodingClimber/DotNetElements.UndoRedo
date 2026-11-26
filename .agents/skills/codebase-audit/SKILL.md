@@ -11,13 +11,13 @@ Investigate the codebase based on the user's requested scope, report concrete fi
 
 * **Read-Only Repository:** Never modify, create, or delete repository files, and never alter git state.
 * **Strict Approval Gate:** Do **not** run `gh issue create` in Phase 1. Wait for explicit user approval of which findings or groups to file.
-* **Deduplicate First:** Check open GitHub issues (`gh issue list --state open`) before reporting so existing issues are not duplicated.
+* **Deduplicate First:** Check open GitHub issues (prefer the host's `list_issues` tool if available; otherwise `gh issue list --state open --limit 50`) before reporting so existing issues are not duplicated.
 * **High Signal Only:** Focus on concrete bugs, architectural drift from docs/DESIGN.md, security/performance/reliability risks, meaningful test gaps and UI if requested. No stylistic nitpicks.
-* **Allowed Commands:** Read-only file inspection, `gh issue list`, `gh issue view`, `dotnet build --no-restore` / `dotnet test --no-build` (if verifying a suspected bug), and `gh issue create` (Phase 2 only, after approval).
+* **Allowed Commands:** Read-only file inspection, host issue tools (`list_issues`, `read_issue`) or `gh issue list` / `gh issue view <number> --json number,title,body,comments,labels,state` (never bare `--comments`), `dotnet build --no-restore` / `dotnet test --no-build` (if verifying a suspected bug), and `create_issue` / `gh issue create` (Phase 2 only, after approval).
 
 #### Phase 1: Investigate & Report
 
-1. Read docs/DESIGN.md and run `gh issue list --state open --limit 50` to understand system invariants and already-tracked work.
+1. Read docs/DESIGN.md and check open issues (via `list_issues` if available, else `gh issue list --state open --limit 50`) to understand system invariants and already-tracked work.
 2. Execute the requested audit mode:
    * **General Audit:** Review solution structure, core projects, and tests against docs/DESIGN.md and .NET best practices (nullability, async/await, `IDisposable`, exception handling, concurrency, resource/DI lifetimes, test coverage).
    * **Topic Audit:** Deep-dive into the requested topic (e.g., error handling, security, performance, logging, data access).

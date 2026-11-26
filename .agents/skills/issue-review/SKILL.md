@@ -11,11 +11,11 @@ Perform a strict, read-only review of the uncommitted changes for the active Git
 
 * **Do not modify, create, or delete any files.**
 * **Do not run `git commit` or alter git state.**
-* Only run read-only inspection or verification commands (`gh issue view`, `git status -uall`, `git diff`, `git diff --cached`, reading untracked files, `dotnet build --no-restore`, `dotnet test --no-build`).
+* Only run read-only inspection or verification commands (`read_issue` / `gh issue view <number> --json ...`, `git status -uall`, `git diff`, `git diff --cached`, reading untracked files, `dotnet build --no-restore`, `dotnet test --no-build`).
 
 #### Steps
 
-1. Run `gh issue view <number> --comments` and read docs/DESIGN.md.
+1. Read the issue (prefer the host's `read_issue` tool if available; otherwise run `gh issue view <number> --json number,title,body,comments,labels,state` — never bare `--comments`) and read docs/DESIGN.md.
 2. Run `git status -uall`, `git diff`, and `git diff --cached` to inspect all modified and staged changes and enumerate every untracked file (including files inside new directories).
 3. Read the full contents of every untracked source, config, and test file listed by `git status -uall` so newly added files are reviewed with the same rigor as tracked diffs.
 4. Verify `dotnet build --no-restore` and `dotnet test --no-build` pass cleanly if test output was not already provided.
